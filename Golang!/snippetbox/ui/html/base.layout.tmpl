@@ -1,0 +1,42 @@
+{{define "base"}}
+<!doctype html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <title>{{template "title" .}} - Курьерский сервис</title>
+    <!-- Ссылка на CSS стили и иконку сайта -->
+    <link rel='stylesheet' href='/static/css/main.css'>
+    <link rel='shortcut icon' href='/static/img/favicon.ico' type='image/x-icon'>
+    <!-- Подключаем новый шрифт для сайта от Google Fonts -->
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700'>
+</head>
+<body>
+    <header>
+        <h1><a href='/'>Курьерский сервис</a></h1>
+    </header>
+    <nav>
+        <div>
+        <a href='/'>Заказы</a>
+        <a href='/snippet/create'>Создание заметки</a>
+        <a href='/'>Список курьеров</a>
+        </div>
+        <div>
+            <a href='/user/signup'>Зарегистрироваться</a>
+            <a href='/user/login'>Авторизация</a>
+            <form action='/user/logout' method='POST'>
+                <button>Выход из панели управления</button>
+            </form>
+        </div>
+    </nav>
+    <section>
+        {{with .Flash}}
+            <div class='flash'>{{.}}</div>
+        {{end}}
+    {{template "body" .}}
+    </section>
+    <!-- Подключаем фьючер js -->
+    {{template "footer" .}}
+    <script src="/static/js/main.js" type="text/javascript"></script>
+</body>
+</html>
+{{end}}
